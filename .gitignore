@@ -1,0 +1,6 @@
+# To be ignored by VCS
+
+
+__pycache__/
+*.egg-info/
+.ipynb_checkpoints/
