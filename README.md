@@ -11,3 +11,6 @@ Use like this
 ```bash
 buzfu
 ```
+
+TODO:
+* instead of using `_savefig`, better override `Figure.savefig`...

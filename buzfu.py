@@ -49,7 +49,6 @@ def main():
         file.unlink()
 
 
-# Better override Figure.savefig...
 def _savefig(fig, fname, *args, **kwargs):
     final, buffer = (pathlib.Path(name) for name in (fname, BUFFER_DIR))
     temp = buffer / final.name
