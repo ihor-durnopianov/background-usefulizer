@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""A tool to produce plots of cryptocurrency price data.
+"""Tool to produce plots of cryptocurrency price data.
 
 Be careful to direct to a non-empty folder - the app is set to remove
 previous contents of the folder it was set to operate in.

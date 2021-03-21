@@ -1,6 +1,6 @@
 # Background usefulizer :)
 
-A simple tool that makes backgrounds useful.  Specifically, by
+Tool that makes backgrounds useful.  Specifically, by
 
 * fetching cryptoasset prices
 * producing plots
@@ -13,4 +13,4 @@ buzfu
 ```
 
 TODO:
-* instead of using `_savefig`, better override `Figure.savefig`...
+* replace `_savefig` with `Figure.savefig`
