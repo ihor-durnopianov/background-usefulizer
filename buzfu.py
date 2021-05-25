@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Tool to produce plots of cryptocurrency price data.
-
-Be careful to direct to a non-empty folder - the app is set to remove
-previous contents of the folder it was set to operate in.
-"""
+"""Tool to produce plots of cryptocurrency price data."""
 
 
 import argparse
@@ -129,7 +125,7 @@ def _make_plot(series):
         linewidth=1 / 2,
     )
     plt.xlabel(None)
-    plt.ylim(0, 2)
+    # plt.ylim(0, 2)
     plt.text(
         0.675, 0.85, _make_summary(preprocessed),
         transform=figure.axes[0].transAxes,
