@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Tool to produce plots of cryptocurrency price data."""
+"""Tool to produce plots of cryptocurrency price data.
+
+Use like buzfu && pushd ~/Pictures && invert-images $(ls .) && popd
+"""
 
 
 import argparse
