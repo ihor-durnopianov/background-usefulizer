@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
-"""Tool to produce plots of cryptocurrency price data.
-
-Use like buzfu && pushd ~/Pictures && invert-images $(ls .) && popd
-"""
+"""Tool to produce plots of cryptocurrency price data."""
 
 
 import argparse
 import pathlib
 import os
+import sys
+import warnings
 
 import requests
 import cachetools
 import pandas as pd
 import matplotlib.pyplot as plt
+import PIL
+import PIL.Image
+import PIL.ImageOps
 
 
 NUM_SYMBOLS = 12
@@ -42,18 +44,25 @@ def main():
         _savefig(
             fig,
             args.destination / name,
+            args.invert,
             **SAVEFIG_CONF
         )
     for file in prev_contents:
         file.unlink()
 
 
-def _savefig(fig, fname, *args, **kwargs):
+def _savefig(
+    fig, fname,
+    invert=False,
+    *args, **kwargs
+):
     final, buffer = (pathlib.Path(name) for name in (fname, BUFFER_DIR))
     temp = buffer / final.name
     if not buffer.exists():
         os.makedirs(buffer)
     fig.savefig(temp, *args, **kwargs)
+    if invert:
+        _invert_rgba(PIL.Image.open(temp)).save(temp)
     os.system(f"mv {temp} {final.parent}")
 
 
@@ -69,6 +78,9 @@ class _Parser(argparse.ArgumentParser):
             default=default_destination,
             type=pathlib.Path,
             help="defaults to %s" % default_destination
+        )
+        self.add_argument(
+            "-i", "--invert", action="store_true"
         )
         return self
 
@@ -149,6 +161,17 @@ def _make_summary(series):
         len(series),
         series.index.min(),
         series.index.max(),
+    )
+
+
+def _invert_rgba(image):
+    if not image.mode == "RGBA":
+        warnings.warn("not RGBA, returning as-is")
+        return image
+    r, g, b, a = image.split()
+    return PIL.Image.merge(
+        "RGBA",
+        PIL.ImageOps.invert(PIL.Image.merge("RGB", (r, g, b))).split() + (a,)
     )
 
 

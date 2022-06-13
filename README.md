@@ -11,6 +11,7 @@ Tool that makes backgrounds useful.  Specifically, by
 **To do**:
 * replace `_savefig` with `Figure.savefig`
 * make `super().__init__(description=__doc__)` honor newlines, instead of replacing it by spaces
+* move `_invert_rgba` out.  To a standalone project?
 
 ## Use
 
